@@ -1,0 +1,47 @@
+<div class="header">
+  <label for="directorates">Directorate:</label>
+  <select id="directorates" [ngModel]="selectedDirectorate" (ngModelChange)="onDirectorateSelectChange($event)">
+    <option *ngFor="let item of uniqueDirectorateList | orderBy: 'item'" [value]="item">{{ item }}</option>
+  </select>
+
+  <label for="suburbs">Suburb:</label>
+  <select id="suburbs" [ngModel]="selectedSuburb" (ngModelChange)="onSuberbSelectChange($event)">
+    <option *ngFor="let item of uniqueSuberbList | orderBy: 'item'" [value]="item">{{ item }}</option>
+  </select>
+</div>
+<br>
+
+<mat-toolbar color="primary">
+  <span>Top 50 suburbs for : {{appService.selectedDirectorate}}</span>
+</mat-toolbar>
+<div class="chart-container">
+  <div class="chart-wrapper">
+    <canvas baseChart 
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+      (chartClick)="onChartClick($event)">
+    </canvas>
+  </div>
+</div>
+
+<mat-toolbar color="primary">
+  <span>Chart showing {{appService.selectedDirectorate}}:{{appService.selectedSuburb}} total Codes </span>
+</mat-toolbar>
+<div class="chart-container">
+  <div class="chart-wrapper">
+    <canvas baseChart 
+      [datasets]="barChartSuburbData"
+      [labels]="barChartSuburbLabels"
+      [options]="barChartSuburbOptions"
+      [plugins]="barChartSuburbPlugins"
+      [legend]="barChartSuburbLegend"
+      [type]="barChartType">
+    </canvas>
+  </div>
+</div>
+
+

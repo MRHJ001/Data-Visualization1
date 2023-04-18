@@ -1,0 +1,40 @@
+/* Toolbars */
+.mat-toolbar, .mat-toolbar-row {
+    background-color: rgb(194,86,50);
+    color: #fff; 
+  }
+  
+  /* Buttons */
+  button, .mat-button {
+    background-color: transparent;
+    color: #fff; 
+    border: none;
+    outline: none;
+  }
+
+  /* CSS */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .flex-spacer {
+    flex: 1 1 auto;
+  }
+
+  .directorateLabel {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: underline
+  }
+
+  .color-box {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+  }

@@ -1,0 +1,45 @@
+<app-loading></app-loading>
+<app-chart></app-chart>
+
+
+  <mat-drawer-container class="map-container" autosize>
+    <mat-drawer #drawer class="map-sidenav" mode="push">
+        <mat-toolbar color="primary" class="toolbar">
+            <span>Layers</span>
+            <span class="flex-spacer"></span>
+            <button mat-icon-button (click)="drawer.toggle()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-toolbar>
+          <mat-nav-list>
+            <mat-list-item>
+                <mat-checkbox (change)="onCheckboxChange($event, 'Suburb Boundaries Color', '')" [checked]='true'></mat-checkbox>
+                <a matLine>Suburb Boundaries Color</a>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-checkbox (change)="onCheckboxChange($event, 'Suburb Boundaries', '')" [checked]='true'></mat-checkbox>
+                <a matLine>Suburb Boundaries</a>
+              </mat-list-item>
+
+              <div class="directorateLabel">{{appService.selectedDirectorate}}</div>
+            <div *ngFor="let item of appService.ChartSubertDataToShow | orderBy: 'code'">
+              <mat-list-item>
+                <mat-checkbox (change)="onCheckboxChange($event, item.code, item.Directorate)" [checked]='true'></mat-checkbox>
+                <a matLine>{{ item.code }}:({{ item.length }})</a>
+                <span class="color-box" [style.background-color]="item.backgroundColor"></span>
+              </mat-list-item>
+            </div>
+          </mat-nav-list>
+    </mat-drawer>
+  
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="menu-button" (click)="drawer.toggle()" [style.display]="drawer.opened ? 'none' : 'block'">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Map of City of Capetown</span>
+    </mat-toolbar>
+  
+    <div class="map-content">
+        <app-map></app-map>
+    </div>
+  </mat-drawer-container>
